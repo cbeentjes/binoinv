@@ -12,6 +12,9 @@
 # Unignore all Makefiles
 !Makefile
 
+# Unignore license file
+!LICENSE
+
 ## Compiled MEX files
 *.mexa64
 
