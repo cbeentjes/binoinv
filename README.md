@@ -1,4 +1,4 @@
-## binoinv: Fast evaluation of the inverse binomial CDF
+# binoinv: Fast evaluation of the inverse binomial CDF
 
 ## Synopsis
 
@@ -6,7 +6,7 @@ The function [normcdfinv(u)](https://docs.nvidia.com/cuda/cuda-math-api/group__C
 
 Here we present an article, and associated software, on algorithms for a function binoinv(u) which performs the corresponding task for binomial distributions, and can be used to generate binomial random variates.
 
-Some aspects of the implementation, as well as the testing, build on previous work by M. B. Giles on the [inverse Poission CDF function](https://people.maths.ox.ac.uk/gilesm/codes/poissinv/).
+Some aspects of the implementation, as well as the testing, build on previous work by M. B. Giles on the [inverse Poission CDF function](https://github.com/cbeentjes/poissinv).
 
 For mathematical details, see
 
@@ -19,8 +19,8 @@ For more information on fast inverse CDF computation [click here](https://people
 
 ## Authors
 
-M. B. Giles   <mike.giles@maths.ox.ac.uk>
-C. H. L. Beentjes <casper.beentjes@maths.ox.ac.uk>
+* M. B. Giles   <mike.giles@maths.ox.ac.uk>
+* C. H. L. Beentjes <casper.beentjes@maths.ox.ac.uk>
 
 ## Installation
 
