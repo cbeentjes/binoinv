@@ -52,7 +52,7 @@ To make this permanent consider [adding this line to your startup.m file](mathwo
 
 * [/mex](https://github.com/cbeentjes/binoinv/src/master/mex/) contains MEX wrappers to call the fast CDF, inverse CDF and inverse complementary CDF routines as MATLAB routines.
 
-* [/src](https://github.com/cbeentjes/binoinv/src/master/src/) contains several header files with the core C-routines to evaluate the inverse CDF and complementary CDF functions (binoinv.h) and the regular CDF function (binocdf.h). Also present are single precision variants in the [/src/float](https://github.com/cbeentjes/binoinv/src/master/src/float/).
+* [/src](https://github.com/cbeentjes/binoinv/src/master/src/) contains several header files with the core C-routines to evaluate the inverse CDF and complementary CDF functions (binoinv.h,binocinv.h) and the regular CDF function (binocdf.h). Also present are single precision variants in the (binoinvf.h,binocinvf.h,binocdff.h).
 
 * [/test](https://github.com/cbeentjes/binoinv/src/master/test/) contains test code to verify accuracy and test performance of the inverse CDF routines routines. The validation part uses a quad-precision function which requires gcc's [libquadmath](https://gcc.gnu.org/onlinedocs/libquadmath/) library.
  
