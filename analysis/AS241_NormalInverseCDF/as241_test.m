@@ -1,5 +1,5 @@
 %
-% This MATLAB routine tests the accuracy of the algorithms in 
+% This MATLAB routine tests the accuracy of the algorithms in
 %
 % Algorithm AS 241: The Percentage Points of the Normal Distribution,
 % Wichura, M.J., Applied Statistics, 37(8):477-484, 1988
@@ -40,7 +40,7 @@ y2  = [];
 y2f = [];
 
 for p = x2
-  y2 = [y2 norminv_as241(p)];    
+  y2 = [y2 norminv_as241(p)];
 end
 
 for p = x2f

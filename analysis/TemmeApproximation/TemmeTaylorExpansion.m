@@ -3,7 +3,7 @@
 %   asymptotic approximation for small eta. The evaluation of the Taylor
 %   expansion is usually (much) cheaper than the use of Newton-Raphson
 %   iteration to solve for the Temme approximation.
-%   
+%
 %   The accuracy need not be exactly equal to that of the full
 %   Newton-Raphson iteration because generally in the central region of the
 %   distribution the delta-error bound is looser
@@ -16,16 +16,16 @@
 %
 %   for double precision we are interested in
 %   CPU: expansion to order 5, |eta| < 1.25e-2*sqpq
-%   GPU: expansion to order 9, |eta| < 5.48e-1*sqpq or 2.74*sqpq
+%   GPU: expansion to order 9, |eta| < 5.48e-1*sqpq or 2.74e-1*sqpq
 %
 clear all
 close all
 
 p = 1-1e-1;
 % p = 0.0625;
-% p = 0.125;
-p=2^-10;
-p = 1 - 2^-9;
+p = 0.25;
+% p=2^-10;
+% p = 1 - 2^-9;
 
 % Order of Taylor expansion
 n = 9;
@@ -35,14 +35,14 @@ single_flag = true;
 
 P = p;
 if single_flag
-    p = single(p);   
+    p = single(p);
 end
 
 sqpq = sqrt(p - p*p);
 
 % Set the limit of the Taylor expansion region, i.e. |eta| < y*sqpq
 y = 5.8e-1;
-% y = 6e-2;
+% y = 7.5e-1;
 
 % y = 5.48e-1;
 % y = 2.74e-1;
@@ -79,7 +79,7 @@ if single_flag
 else
     a(1) = 1.0;
 end
-a(2) = pr*(1.0/3.0);                         
+a(2) = pr*(1.0/3.0);
 a(3) = (pr*pr-0.75)*(1.0/36.0);
 a(4) = pr*(2.25-pr*pr)*(1.0/270.0);
 a(5) = (-2.4375+pr*pr*(-13.5+pr*pr))*(1.0/4320.0);
@@ -91,8 +91,8 @@ a(9) = -(2049867 + pr*pr*(90331632 + pr*pr*(234206496 + pr*pr*(28628736 + ...
 a(10) = pr*(5026455 + pr*pr*(67004496 + pr*pr*(90359712 + pr*pr*(5799168 - 71936*pr*pr))))*(1./387991296000);
 a(11) = -(805522725 + pr*pr*(61005186612 + pr*pr*(369023296032 + ...
         pr*pr*(287140266624 + pr*pr*(9876089088 - 167812096*pr*pr)))))*(1/2224897287782400);
-    
-xi = 0;    
+
+xi = 0;
 xi_eta = 0;
 for i = 0:n-1
     xi = a(n-i) + eta0.*xi;
@@ -132,7 +132,7 @@ hold on
 plot(eta0,abs(1-xi2./xi_exact),'.')
 if single_flag
     yline(eps('single')/2,'r')
-%     ylim([0,2e-7])    
+%     ylim([0,2e-7])
 else
     yline(eps,'r')
 %     ylim([0,1e-10])

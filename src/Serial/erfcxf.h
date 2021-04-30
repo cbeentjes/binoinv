@@ -30,7 +30,7 @@
 // DOI: 10.1090/S0025-5718-1981-0595058-X
 //
 // Max error in the half-plane is claimed to be ~2.0 ULPs.
-// More details on implementation, error and source code on:
+// More details on implementation, error and source code by N. Juffa on:
 // https://stackoverflow.com/questions/39777360/accurate-computation-of-scaled-complementary-error-function-erfcx
 //
 // If FMA operation is not supported and separate multiplication + addition

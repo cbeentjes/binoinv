@@ -10,7 +10,7 @@
 %
 % Note that this can only be solved for xi when eta lies in the interval
 % [ -sqrt(-2 log p), sqrt(-2 log(1-p)) ]
-% 
+%
 % Here we check that if eta does NOT lie in this interval whether the
 % clamped Newton iteration will return a value of xi either equal to 1/nu
 % or 1-1/nu so that we get S = xi*nu is 1 or n-1, thus forcing the use of
@@ -80,7 +80,7 @@ if N*p > 10 && N*q > 10
                     a0=p; p=q; q=a0;
                     eta0 = -eta0;
                 end
-                
+
                 xi = p;
                 eta = 0;
                 xi_eta = -sqpq;
@@ -96,13 +96,13 @@ if N*p > 10 && N*q > 10
                 disp([-0.5*eta0^2, xi*log(p/xi) + (1-xi)*log((1-p)/(1-xi))])
 
                 eta1 = log(sqrt(xi-xi*xi)*eta0/(p-xi)) / eta0;
-                
+
                 if flag
                     xi = 1.0 - xi;
                     xi_eta = -xi_eta;
                     a0=p; p=q; q=a0;
                 end
-            end       
+            end
             x = xi*nu + eta1*xi_eta;
             % Check whether a valid solution gets returned. Only problematic
             % scenario is when 10 < x < N-10 is returned when (2.3) does not

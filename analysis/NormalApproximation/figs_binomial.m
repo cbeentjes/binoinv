@@ -55,7 +55,7 @@ annotation('arrow',ax,ay,'HeadWidth',6)
 %           case check NormalApproximationError.nb, Mathematica notebook
 %           which is capable of running arbitrary precision.
 %
-% close all
+close all
 clear all
 
 figure(2)
@@ -74,7 +74,7 @@ for jx = 1:length(N)
     % Calculate k such that I_{1-p}(N-k+1,k) == U, where U = normcdf(W)
     for ix = 1:numel(ks)
         if W(ix) > 0
-            ks(ix) = fzero(@(x) betainc(1-p,n-x+1,x,'upper')-normcdf(-W(ix)),[0,n]);            
+            ks(ix) = fzero(@(x) betainc(1-p,n-x+1,x,'upper')-normcdf(-W(ix)),[0,n+1]);            
         else
             ks(ix) = fzero(@(x) betainc(1-p,n-x+1,x)-normcdf(W(ix)),[0,n]);
         end
@@ -82,6 +82,13 @@ for jx = 1:length(N)
     % Calculate the effective w from ks (rather than using W). This is 
     % slightly more stable for large values of n.
     w = norminv(betainc(1-p,n-ks+1,ks));
+    
+    % Only need to consider the cases for which the result is in [10,N-10],
+    % as otherwise we use direct summation.
+    ix = and(ks >= 9, ks <= n-9);
+    w = w(ix);
+    ks = ks(ix);
+    
     % Compare to Normal approximations
     x1 = n*p + sqrt(n*p*(1-p)).*w;
     x2 = x1 + (0.5 + (1-2*p)*(w.^2-1)/6);
@@ -91,26 +98,26 @@ for jx = 1:length(N)
         (abs(1-2*p) + 0.25./sqrt(n*p*(1-p))))./(n*p*(1-p));
 
     figure(2)
-    subplot(3,2,jx); plot(W,ks-x2,'k'); 
+    subplot(3,2,jx); plot(w,ks-x2,'k'); 
     xlim([-3.5,3.5]); xticks(-3:1:3);
     xlabel('$w$','interpreter','latex'); ylabel('$Q-\widetilde{Q}_{N1}$','interpreter','latex')
     set(gca,'TickLabelInterpreter','latex')
     title(['$n$ = ' num2str(n) ', $p$ = ' num2str(p)],'interpreter','latex')
     
-    subplot(3,2,jx+2); plot(W,ks-x3,'k')
+    subplot(3,2,jx+2); plot(w,ks-x3,'k')
     xlim([-3.5,3.5]); xticks(-3:1:3);    
     xlabel('$w$','interpreter','latex'); ylabel('$Q-\widetilde{Q}_{N2}$','interpreter','latex')
     set(gca,'TickLabelInterpreter','latex')
     y = ylim;
     ylim(1.5*y);
     
-    subplot(3,2,jx+4); plot(W,ks-x4,'k')
+    subplot(3,2,jx+4); plot(w,ks-x4,'k')
     xlim([-3.5,3.5]); xticks(-3:1:3);    
     xlabel('$w$','interpreter','latex'); ylabel('$Q-\widetilde{Q}_{N3}$','interpreter','latex')
     set(gca,'TickLabelInterpreter','latex')
     
     figure(3)
-    subplot(1,2,jx);   plot(W,(ks-x3)./delta,'k')
+    subplot(1,2,jx);   plot(w,(ks-x3)./delta,'k')
     ylim([-1,1])
     xlim([-3.5,3.5]); xticks(-3:1:3);    
     xlabel('$w$','interpreter','latex'); ylabel('$(Q-\widetilde{Q}_{N2})/\delta$','interpreter','latex')
@@ -132,7 +139,7 @@ end
 %           case check NormalApproximationError.nb, Mathematica notebook
 %           which is capable of running arbitrary precision.
 %
-% close all
+close all
 clear all
 
 figure(4)

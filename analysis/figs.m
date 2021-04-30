@@ -29,11 +29,11 @@ pmin = 1/N;
 loglog(x1*[1 1],[x3 x4],'--k',...
        x2*[1 1],[x3 x4],'--k',...
        [x1 x2],x3*[1 1],'--k',...
-       [x1 x2],x4*[1 1],'--k','LineWidth',1); 
+       [x1 x2],x4*[1 1],'--k','LineWidth',1);
 hold on
-axis square; 
+axis square;
 axis([xmin xmax pmin pmax]);
-xlabel('$k$','interpreter','latex'); ylabel('$p$','interpreter','latex'); 
+xlabel('$k$','interpreter','latex'); ylabel('$p$','interpreter','latex');
 text(1.5,0.05*pmax,'bottom-up','interpreter','latex')
 text(5,1.5*pmin,'bottom-up','interpreter','latex')
 text(10,2.5*pmin,'top-down','interpreter','latex')
@@ -45,7 +45,7 @@ h=text(1.5*x1,10.0*x3,'Temme','interpreter','latex');
 
 set(gca,'TickLabelInterpreter','latex')
 
-plot(binoinv(0.5,N,linspace(pmin,x3,1e3)),linspace(pmin,x3,1e3),'--k','LineWidth',1); 
+plot(binoinv(0.5,N,linspace(pmin,x3,1e3)),linspace(pmin,x3,1e3),'--k','LineWidth',1);
 
 %
 % curves corresponding to different values of u
@@ -58,7 +58,7 @@ l_style = {'-.','-.',':',':','-','-'};
 k = 1;
 for u = [ normcdf(3) normcdf(-3) double(realmin('single')) -double(realmin('single')) 1e-300 -1e-300 ]
 
-  if (u>0)   
+  if (u>0)
     y = betaincinv(u,x+1,N-x,'upper');
   else
     y = betaincinv(-u,x+1,N-x,'lower');
